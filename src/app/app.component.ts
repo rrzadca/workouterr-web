@@ -7,8 +7,4 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
     title = 'workouterr-web';
-
-    constructor() {
-        console.log(` ;; asdf`);
-    }
 }
