@@ -1,5 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ButtonComponent } from '../../components/button/button.component';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
     selector: 'rr-app-view',
@@ -7,6 +9,11 @@ import { CommonModule } from '@angular/common';
     styleUrls: ['app-view.component.scss'],
     standalone: true,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [CommonModule],
+    imports: [CommonModule, ButtonComponent],
 })
-export class AppViewComponent {}
+export class AppViewComponent {
+    constructor(private authService: AuthService) {}
+    onLogout(): void {
+        this.authService.logout();
+    }
+}

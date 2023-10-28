@@ -19,7 +19,7 @@ export class LoginViewComponent {
     ) {}
 
     login(): void {
-        this.authService.setLoggedIn(true);
+        this.authService.login();
         this.router.navigateByUrl('/app');
     }
 }
