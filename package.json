@@ -7,7 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "prettier:all": "prettier --write ./src/**/*.{html,ts,scss}"
+    "prettier:all": "prettier --write ./src/**/*.{html,ts,scss}",
+    "g:api": "./generate-api-module.sh http://localhost:3000/api-json"
   },
   "private": true,
   "dependencies": {
@@ -19,6 +20,7 @@
     "@angular/platform-browser": "^16.2.0",
     "@angular/platform-browser-dynamic": "^16.2.0",
     "@angular/router": "^16.2.0",
+    "@nomasolutions/ns-01188-api": "0.23.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.0"
