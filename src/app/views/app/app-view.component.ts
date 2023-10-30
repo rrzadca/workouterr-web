@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ButtonComponent } from '../../components/button/button.component';
 import { AuthService } from '../../services/auth.service';
@@ -13,7 +13,8 @@ import { AuthService } from '../../services/auth.service';
 })
 export class AppViewComponent {
     constructor(private authService: AuthService) {}
-    onLogout(): void {
+
+  onLogout(): void {
         this.authService.logout();
     }
 }

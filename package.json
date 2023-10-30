@@ -7,8 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "prettier:all": "prettier --write ./src/**/*.{html,ts,scss}",
-    "g:api": "./generate-api-module.sh http://localhost:3000/api-json"
+    "prettier:all": "prettier --write ./src/**/*.{html,ts,scss}"
   },
   "private": true,
   "dependencies": {
