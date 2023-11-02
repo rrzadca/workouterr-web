@@ -1,6 +1,5 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ButtonComponent } from '../../components/button/button.component';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -9,12 +8,14 @@ import { AuthService } from '../../services/auth.service';
     styleUrls: ['app-view.component.scss'],
     standalone: true,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [CommonModule, ButtonComponent],
+    imports: [CommonModule],
 })
-export class AppViewComponent {
+export class AppViewComponent implements OnInit {
     constructor(private authService: AuthService) {}
 
-  onLogout(): void {
+    ngOnInit(): void {}
+
+    onLogout(): void {
         this.authService.logout();
     }
 }

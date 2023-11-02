@@ -16,6 +16,13 @@ const routes: Routes = [
             ),
     },
     {
+        path: 'create-account',
+        loadComponent: () =>
+            import(
+                './views/auth/create-account-view/create-account-view.component'
+            ).then((m) => m.CreateAccountViewComponent),
+    },
+    {
         path: 'app',
         loadComponent: () =>
             import('./views/app/app-view.component').then(
