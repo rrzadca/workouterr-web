@@ -21,3 +21,7 @@ h1 {
 h3 {
     @apply text-xl font-bold text-teal-600 dark:text-teal-200;
 }
+
+a {
+    @apply text-teal-600 hover:text-teal-800 dark:text-teal-200 hover:dark:text-teal-400;
+}

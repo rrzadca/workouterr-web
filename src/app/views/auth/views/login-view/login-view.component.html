@@ -1,18 +1,21 @@
 <div class="flex flex-col items-center justify-center">
     <h1>WorkouteRR</h1>
 
-    <form [formGroup]="form" class="mt-8 flex flex-col">
-        <mat-form-field>
-            <mat-label>E-mail</mat-label>
-            <input matInput formControlName="email" />
-        </mat-form-field>
-        <mat-form-field>
-            <mat-label>Password</mat-label>
-            <input matInput type="password" formControlName="password" />
-        </mat-form-field>
-        <rr-button (click)="onLogin()">Login</rr-button>
-        <rr-button (click)="onLogin()" [variant]="'secondary'">
-            Secondary
+    <form [formGroup]="form" class="mt-8 flex flex-col gap-y-4">
+        <rr-text-input
+            [label]="'E-mail'"
+            [id]="'email'"
+            formControlName="email"
+        ></rr-text-input>
+        <rr-text-input
+            [label]="'Password'"
+            [type]="'password'"
+            [id]="'password'"
+            formControlName="password"
+        ></rr-text-input>
+
+        <rr-button [fullWidth]="true" class="mt-6" (click)="onLogin()">
+            Login
         </rr-button>
     </form>
 

@@ -22,6 +22,7 @@ export type ButtonVariant = 'primary' | 'secondary';
 export class ButtonComponent implements OnInit, OnChanges {
     @Input() size: ButtonSize = 'l';
     @Input() variant: ButtonVariant = 'primary';
+    @Input() fullWidth = false;
 
     private readonly cssClassesArr: string[] = [];
 
@@ -41,6 +42,9 @@ export class ButtonComponent implements OnInit, OnChanges {
         this.cssClassesArr.push(
             'shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-200',
         );
+        if (this.fullWidth) {
+            this.cssClassesArr.push('w-full');
+        }
         this.addSizeCssClasses();
         this.addVariantsCssClasses();
     }
