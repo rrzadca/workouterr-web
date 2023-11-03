@@ -12,6 +12,7 @@ import {
     ReactiveFormsModule,
     Validators,
 } from '@angular/forms';
+import { ButtonComponent } from '../../../../components/button/button.component';
 
 @Component({
     selector: 'rr-login-view',
@@ -26,6 +27,7 @@ import {
         MatFormFieldModule,
         FormsModule,
         ReactiveFormsModule,
+        ButtonComponent,
     ],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

@@ -9,15 +9,15 @@ html {
     @apply h-full antialiased;
 }
 body {
-    @apply flex min-h-full flex-col bg-neutral-800 text-teal-200;
+    @apply flex min-h-full flex-col bg-neutral-200 text-neutral-800 dark:bg-neutral-800 dark:text-neutral-200;
 
     font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
 
 h1 {
-    @apply text-3xl font-bold;
+    @apply text-3xl font-bold text-teal-800 dark:text-teal-200;
 }
 
 h3 {
-    @apply text-xl font-bold;
+    @apply text-xl font-bold text-teal-800 dark:text-teal-200;
 }

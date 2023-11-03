@@ -10,9 +10,7 @@
             <mat-label>Password</mat-label>
             <input matInput type="password" formControlName="password" />
         </mat-form-field>
-        <button mat-raised-button color="accent" (click)="onLogin()">
-            Login
-        </button>
+        <rr-button (click)="onLogin()">Login</rr-button>
     </form>
 
     <a routerLink="/auth/create-account" class="mt-4"> Create account </a>
