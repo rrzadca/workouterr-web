@@ -1,4 +1,4 @@
-<h3>Buttons</h3>
+<h3>rr-button</h3>
 <div class="flex flex-col gap-y-4">
     <div class="flex items-center gap-x-4">
         <rr-button [variant]="'primary'" [size]="'sm'">primary sm</rr-button>
@@ -25,3 +25,9 @@
         </rr-button>
     </div>
 </div>
+<br />
+<h3>rr-input-text</h3>
+<rr-input-text
+    [placeholder]="'enter text'"
+    [(ngModel)]="textInput"
+></rr-input-text>
