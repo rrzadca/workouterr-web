@@ -12,11 +12,12 @@ import {
     Validators,
 } from '@angular/forms';
 import { UsersApiService } from '../../../../api/users/users-api.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { CommonModule } from '@angular/common';
 import { ButtonComponent } from '../../../../components/button/button.component';
 import { InputTextComponent } from '../../../../components/inputs/input-text/input-text.component';
+import { AuthLayoutComponent } from '../../components/auth-layout/auth-layout.component';
 
 @Component({
     selector: 'rr-create-account-view',
@@ -30,6 +31,8 @@ import { InputTextComponent } from '../../../../components/inputs/input-text/inp
         ReactiveFormsModule,
         ButtonComponent,
         InputTextComponent,
+        AuthLayoutComponent,
+        RouterLink,
     ],
 })
 export class CreateAccountViewComponent {
@@ -53,7 +56,6 @@ export class CreateAccountViewComponent {
                 .create(this.form.value)
                 .pipe(takeUntilDestroyed(this.destroyRef))
                 .subscribe((res) => {
-                    console.log(` ;; res`, res);
                     this.router.navigateByUrl('/login');
                 });
         }

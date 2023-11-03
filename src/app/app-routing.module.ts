@@ -9,12 +9,18 @@ const routes: Routes = [
         redirectTo: 'app',
     },
     {
-        path: 'auth',
+        path: 'login',
         loadComponent: () =>
-            import('./views/auth/auth-view.component').then(
-                (m) => m.AuthViewComponent,
+            import('./views/auth/views/login-view/login-view.component').then(
+                (m) => m.LoginViewComponent,
             ),
-        loadChildren: () => import('./views/auth/auth-view.routes'),
+    },
+    {
+        path: 'create-account',
+        loadComponent: () =>
+            import(
+                './views/auth/views/create-account-view/create-account-view.component'
+            ).then((m) => m.CreateAccountViewComponent),
     },
     {
         path: 'app',

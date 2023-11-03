@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
+import { ButtonComponent } from '../../components/button/button.component';
 
 @Component({
     selector: 'rr-app-view',
@@ -8,7 +9,7 @@ import { AuthService } from '../../services/auth.service';
     styleUrls: ['app-view.component.scss'],
     standalone: true,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [CommonModule],
+    imports: [CommonModule, ButtonComponent],
 })
 export class AppViewComponent implements OnInit {
     constructor(private authService: AuthService) {}

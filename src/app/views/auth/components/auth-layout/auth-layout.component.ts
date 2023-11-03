@@ -3,11 +3,11 @@ import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
-    selector: 'app-auth-view',
-    templateUrl: './auth-view.component.html',
-    styleUrls: ['./auth-view.component.scss'],
+    selector: 'rr-auth-layout',
+    templateUrl: './auth-layout.component.html',
+    styleUrls: ['./auth-layout.component.scss'],
     standalone: true,
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [CommonModule, RouterOutlet],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AuthViewComponent {}
+export class AuthLayoutComponent {}

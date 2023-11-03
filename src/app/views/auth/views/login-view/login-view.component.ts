@@ -11,6 +11,7 @@ import {
 } from '@angular/forms';
 import { ButtonComponent } from '../../../../components/button/button.component';
 import { InputTextComponent } from '../../../../components/inputs/input-text/input-text.component';
+import { AuthLayoutComponent } from '../../components/auth-layout/auth-layout.component';
 
 @Component({
     selector: 'rr-login-view',
@@ -24,6 +25,7 @@ import { InputTextComponent } from '../../../../components/inputs/input-text/inp
         ReactiveFormsModule,
         ButtonComponent,
         InputTextComponent,
+        AuthLayoutComponent,
     ],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
