@@ -2,17 +2,17 @@
     <h1>WorkouteRR</h1>
 
     <form [formGroup]="form" class="mt-8 flex flex-col gap-y-4">
-        <rr-text-input
+        <rr-input-text
             [label]="'E-mail'"
             [id]="'email'"
             formControlName="email"
-        ></rr-text-input>
-        <rr-text-input
+        ></rr-input-text>
+        <rr-input-text
             [label]="'Password'"
             [type]="'password'"
             [id]="'password'"
             formControlName="password"
-        ></rr-text-input>
+        ></rr-input-text>
 
         <rr-button [fullWidth]="true" class="mt-6" (click)="onLogin()">
             Login

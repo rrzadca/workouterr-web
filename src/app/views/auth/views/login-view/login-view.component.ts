@@ -13,7 +13,7 @@ import {
     Validators,
 } from '@angular/forms';
 import { ButtonComponent } from '../../../../components/button/button.component';
-import { TextInputComponent } from '../../../../components/inputs/text-input/text-input.component';
+import { InputTextComponent } from '../../../../components/inputs/input-text/input-text.component';
 
 @Component({
     selector: 'rr-login-view',
@@ -29,7 +29,7 @@ import { TextInputComponent } from '../../../../components/inputs/text-input/tex
         FormsModule,
         ReactiveFormsModule,
         ButtonComponent,
-        TextInputComponent,
+        InputTextComponent,
     ],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -47,10 +47,9 @@ export class LoginViewComponent {
     }
 
     onLogin(): void {
-        console.log(` ;; this.form.valid`, this.form);
         if (this.form.valid) {
-            // this.authService.login();
-            // this.router.navigateByUrl('/app');
+            this.authService.login();
+            this.router.navigateByUrl('/app');
         }
         this.form.markAllAsTouched();
     }

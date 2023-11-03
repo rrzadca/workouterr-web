@@ -1,24 +1,10 @@
-import { Component, Input } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
 
-@Component({
-    selector: 'rr-text-input',
-    templateUrl: './text-input.component.html',
-    styleUrls: ['./text-input.component.scss'],
-    standalone: true,
-    imports: [CommonModule],
-})
-export class TextInputComponent implements ControlValueAccessor {
+export abstract class BaseValueAccessor<T> implements ControlValueAccessor {
     isDisabled = false;
-    private innerValue: string | null = null;
+    private innerValue: T | null = null;
 
-    @Input() type: 'email' | 'password' | 'text' = 'text';
-    @Input() label: string | undefined;
-    @Input() id: string | undefined;
-    @Input() placeholder: string = '';
-
-    constructor(protected ngControl: NgControl) {
+    protected constructor(protected ngControl: NgControl) {
         if (ngControl) {
             ngControl.valueAccessor = this;
         } else {
@@ -26,11 +12,11 @@ export class TextInputComponent implements ControlValueAccessor {
         }
     }
 
-    onValueChangeEvent: (value: string | null) => void = () => {};
+    onValueChangeEvent: (value: T | null) => void = () => {};
 
     onTouchEvent: () => void = () => {};
 
-    registerOnChange(onChangeFn: (value: string | null) => void): void {
+    registerOnChange(onChangeFn: (value: T | null) => void): void {
         this.onValueChangeEvent = onChangeFn;
     }
 
@@ -42,28 +28,23 @@ export class TextInputComponent implements ControlValueAccessor {
         this.isDisabled = isDisabled;
     }
 
-    writeValue(value: string | null): void {
+    writeValue(value: T | null): void {
         this.value = value;
     }
 
-    get value(): string | null {
+    get value(): T | null {
         return this.innerValue;
     }
 
-    set value(value: string | null) {
+    set value(value: T | null) {
         if (value !== this.innerValue) {
             this.innerValue = value;
             this.onValueChangeEvent(value);
-            this.onTouchEvent();
         }
     }
 
-    onValueChange(value: string | null): void {
-        this.value = value;
-    }
-
-    get isValid(): boolean {
-        return !!this.ngControl.valid && !!this.ngControl.touched;
+    get isInvalid(): boolean {
+        return !!this.ngControl.invalid && !!this.ngControl.touched;
     }
 
     get errorMessages(): string[] | null {
