@@ -11,6 +11,9 @@
             <input matInput type="password" formControlName="password" />
         </mat-form-field>
         <rr-button (click)="onLogin()">Login</rr-button>
+        <rr-button (click)="onLogin()" [variant]="'secondary'">
+            Secondary
+        </rr-button>
     </form>
 
     <a routerLink="/auth/create-account" class="mt-4"> Create account </a>

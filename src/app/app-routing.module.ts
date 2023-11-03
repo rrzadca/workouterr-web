@@ -25,6 +25,11 @@ const routes: Routes = [
         canLoad: [AuthGuard],
         canActivate: [AuthGuard],
     },
+    {
+        path: 'doc',
+        loadComponent: () =>
+            import('./views/doc/doc.component').then((m) => m.DocComponent),
+    },
 ];
 
 @NgModule({

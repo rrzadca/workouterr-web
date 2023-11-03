@@ -9,6 +9,7 @@ import {
 import { CommonModule } from '@angular/common';
 
 export type ButtonSize = 'sm' | 'md' | 'l' | 'xl' | '2xl';
+export type ButtonVariant = 'primary' | 'secondary';
 
 @Component({
     selector: 'rr-button',
@@ -20,6 +21,7 @@ export type ButtonSize = 'sm' | 'md' | 'l' | 'xl' | '2xl';
 })
 export class ButtonComponent implements OnInit, OnChanges {
     @Input() size: ButtonSize = 'l';
+    @Input() variant: ButtonVariant = 'primary';
 
     private readonly cssClassesArr: string[] = [];
 
@@ -37,9 +39,13 @@ export class ButtonComponent implements OnInit, OnChanges {
 
     addCssClasses(): void {
         this.cssClassesArr.push(
-            'bg-teal-200 font-semibold text-black shadow-sm hover:bg-teal-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-200',
+            'shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-200',
         );
+        this.addSizeCssClasses();
+        this.addVariantsCssClasses();
+    }
 
+    addSizeCssClasses(): void {
         switch (this.size) {
             case 'sm':
                 this.cssClassesArr.push('rounded px-2 py-1 text-xs');
@@ -55,6 +61,23 @@ export class ButtonComponent implements OnInit, OnChanges {
                 break;
             case '2xl':
                 this.cssClassesArr.push('rounded-md px-3.5 py-2.5 text-sm');
+                break;
+            default:
+                break;
+        }
+    }
+
+    addVariantsCssClasses(): void {
+        switch (this.variant) {
+            case 'primary':
+                this.cssClassesArr.push(
+                    'text-white bg-teal-600 hover:bg-teal-700 focus-visible:outline-teal-600 dark:text-black dark:bg-teal-200 dark:hover:bg-teal-400 dark:focus-visible:outline-teal-200',
+                );
+                break;
+            case 'secondary':
+                this.cssClassesArr.push(
+                    'bg-neutral-800 dark:bg-neutral-200 text-neutral-200 dark:text-neutral-800 hover:bg-neutral-600 dark:hover:bg-neutral-400 focus-visible:outline-neutral-800 dark:focus-visible:outline-neutral-200',
+                );
                 break;
             default:
                 break;
