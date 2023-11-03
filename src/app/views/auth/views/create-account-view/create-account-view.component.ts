@@ -15,12 +15,11 @@ import { UsersApiService } from '../../../../api/users/users-api.service';
 import { Router } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { CommonModule } from '@angular/common';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
+import { ButtonComponent } from '../../../../components/button/button.component';
+import { InputTextComponent } from '../../../../components/inputs/input-text/input-text.component';
 
 @Component({
-    selector: 'app-create-account-view',
+    selector: 'rr-create-account-view',
     templateUrl: './create-account-view.component.html',
     styleUrls: ['./create-account-view.component.scss'],
     standalone: true,
@@ -29,9 +28,8 @@ import { MatButtonModule } from '@angular/material/button';
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatButtonModule,
+        ButtonComponent,
+        InputTextComponent,
     ],
 })
 export class CreateAccountViewComponent {

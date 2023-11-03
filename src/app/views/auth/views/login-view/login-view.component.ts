@@ -2,9 +2,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../../../services/auth.service';
 import { Router, RouterModule } from '@angular/router';
-import { MatButtonModule } from '@angular/material/button';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import {
     FormBuilder,
     FormGroup,
@@ -23,9 +20,6 @@ import { InputTextComponent } from '../../../../components/inputs/input-text/inp
     imports: [
         CommonModule,
         RouterModule,
-        MatButtonModule,
-        MatInputModule,
-        MatFormFieldModule,
         FormsModule,
         ReactiveFormsModule,
         ButtonComponent,
