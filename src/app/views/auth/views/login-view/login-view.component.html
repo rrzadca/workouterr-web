@@ -1,25 +1,29 @@
 <rr-auth-layout>
-    <div class="flex flex-col items-center justify-center">
-        <h1>WorkouteRR</h1>
+    <ng-container *transloco="let t">
+        <div class="flex flex-col items-center justify-center">
+            <h1>WorkouteRR</h1>
 
-        <form [formGroup]="form" class="mt-8 flex flex-col gap-y-4">
-            <rr-input-text
-                [label]="'E-mail'"
-                [id]="'email'"
-                formControlName="email"
-            ></rr-input-text>
-            <rr-input-text
-                [label]="'Password'"
-                [type]="'password'"
-                [id]="'password'"
-                formControlName="password"
-            ></rr-input-text>
+            <form [formGroup]="form" class="mt-8 flex flex-col gap-y-4">
+                <rr-input-text
+                    [label]="t('common.email')"
+                    [id]="'email'"
+                    formControlName="email"
+                ></rr-input-text>
+                <rr-input-text
+                    [label]="t('common.password')"
+                    [type]="'password'"
+                    [id]="'password'"
+                    formControlName="password"
+                ></rr-input-text>
 
-            <rr-button [fullWidth]="true" class="mt-6" (click)="onLogin()">
-                Login
-            </rr-button>
-        </form>
+                <rr-button [fullWidth]="true" class="mt-6" (click)="onLogin()">
+                    {{ t('common.login') }}
+                </rr-button>
+            </form>
 
-        <a routerLink="/create-account" class="mt-4"> Create account </a>
-    </div>
+            <a routerLink="/create-account" class="mt-4">
+                {{ t('common.create-account') }}
+            </a>
+        </div>
+    </ng-container>
 </rr-auth-layout>

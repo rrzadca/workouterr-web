@@ -18,6 +18,7 @@ import { CommonModule } from '@angular/common';
 import { ButtonComponent } from '../../../../components/button/button.component';
 import { InputTextComponent } from '../../../../components/inputs/input-text/input-text.component';
 import { AuthLayoutComponent } from '../../components/auth-layout/auth-layout.component';
+import { TranslocoModule } from '@ngneat/transloco';
 
 @Component({
     selector: 'rr-create-account-view',
@@ -33,6 +34,7 @@ import { AuthLayoutComponent } from '../../components/auth-layout/auth-layout.co
         InputTextComponent,
         AuthLayoutComponent,
         RouterLink,
+        TranslocoModule,
     ],
 })
 export class CreateAccountViewComponent {

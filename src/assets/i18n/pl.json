@@ -1,0 +1,13 @@
+{
+  "common": {
+    "create-account": "Stwórz konto",
+    "login": "Zaloguj",
+    "email": "E-mail",
+    "password": "Hasło",
+    "back": "Wróć"
+  },
+  "errors": {
+    "required": "To pole jest wymagane",
+    "email": "Niepoprawny adres e-mail"
+  }
+}

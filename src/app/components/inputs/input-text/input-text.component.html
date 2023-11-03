@@ -40,10 +40,12 @@
     </div>
 </div>
 <ng-container *ngIf="isInvalid && errorMessages">
-    <p
-        *ngFor="let error of errorMessages"
-        class="mt-2 text-left text-sm text-red-600"
-    >
-        {{ error }}
-    </p>
+    <ng-container *transloco="let t">
+        <p
+            *ngFor="let error of errorMessages"
+            class="mt-2 text-left text-sm text-red-600"
+        >
+            {{ t(error) }}
+        </p>
+    </ng-container>
 </ng-container>

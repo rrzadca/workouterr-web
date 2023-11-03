@@ -12,6 +12,7 @@ import {
 import { ButtonComponent } from '../../../../components/button/button.component';
 import { InputTextComponent } from '../../../../components/inputs/input-text/input-text.component';
 import { AuthLayoutComponent } from '../../components/auth-layout/auth-layout.component';
+import { TranslocoModule } from '@ngneat/transloco';
 
 @Component({
     selector: 'rr-login-view',
@@ -26,6 +27,7 @@ import { AuthLayoutComponent } from '../../components/auth-layout/auth-layout.co
         ButtonComponent,
         InputTextComponent,
         AuthLayoutComponent,
+        TranslocoModule,
     ],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

@@ -2,13 +2,14 @@ import { Component, Input, Self } from '@angular/core';
 import { BaseValueAccessor } from '../base-value-accessor';
 import { CommonModule } from '@angular/common';
 import { NgControl } from '@angular/forms';
+import { TranslocoModule } from '@ngneat/transloco';
 
 @Component({
     selector: 'rr-input-text',
     templateUrl: './input-text.component.html',
     styleUrls: ['./input-text.component.scss'],
     standalone: true,
-    imports: [CommonModule],
+    imports: [CommonModule, TranslocoModule],
 })
 export class InputTextComponent extends BaseValueAccessor<string> {
     @Input() type: 'email' | 'password' | 'text' = 'text';
