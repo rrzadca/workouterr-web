@@ -7,13 +7,17 @@ import {
 import {
     FormBuilder,
     FormGroup,
+    FormsModule,
     ReactiveFormsModule,
     Validators,
 } from '@angular/forms';
-import { UsersApiService } from '../../../api/users/users-api.service';
+import { UsersApiService } from '../../../../api/users/users-api.service';
 import { Router } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { CommonModule } from '@angular/common';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
     selector: 'app-create-account-view',
@@ -21,7 +25,14 @@ import { CommonModule } from '@angular/common';
     styleUrls: ['./create-account-view.component.scss'],
     standalone: true,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [CommonModule, ReactiveFormsModule],
+    imports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatButtonModule,
+    ],
 })
 export class CreateAccountViewComponent {
     private readonly destroyRef = inject(DestroyRef);

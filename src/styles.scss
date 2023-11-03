@@ -4,3 +4,20 @@
 @tailwind components;
 @tailwind utilities;
 @tailwind variants;
+
+html {
+    @apply h-full antialiased;
+}
+body {
+    @apply flex min-h-full flex-col bg-neutral-800 text-teal-200;
+
+    font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+h1 {
+    @apply text-3xl font-bold;
+}
+
+h3 {
+    @apply text-xl font-bold;
+}
