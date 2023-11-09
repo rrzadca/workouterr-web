@@ -16,6 +16,12 @@
                     [id]="'password'"
                     formControlName="password"
                 ></rr-input-text>
+                <rr-input-text
+                    [label]="t('common.confirmPassword')"
+                    [type]="'password'"
+                    [id]="'confirmPassword'"
+                    formControlName="confirmPassword"
+                ></rr-input-text>
 
                 <rr-button [fullWidth]="true" class="mt-6" (click)="onSubmit()">
                     {{ t('common.create-account') }}

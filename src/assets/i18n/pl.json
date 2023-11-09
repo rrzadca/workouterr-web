@@ -8,6 +8,7 @@
   },
   "errors": {
     "required": "To pole jest wymagane",
-    "email": "Niepoprawny adres e-mail"
+    "email": "Niepoprawny adres e-mail",
+    "passwordsDoNotMatch": "Podane hasłą nie są takie same"
   }
 }

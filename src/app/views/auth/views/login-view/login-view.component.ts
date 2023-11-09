@@ -10,9 +10,11 @@ import {
     Validators,
 } from '@angular/forms';
 import { ButtonComponent } from '../../../../components/button/button.component';
-import { InputTextComponent } from '../../../../components/inputs/input-text/input-text.component';
+import { InputTextComponent } from '../../../../components/form/inputs/input-text/input-text.component';
 import { AuthLayoutComponent } from '../../components/auth-layout/auth-layout.component';
 import { TranslocoModule } from '@ngneat/transloco';
+import { confirmPasswordValidator } from '../../../../validators/confirm-password.validator';
+import { FormInputErrorComponent } from '../../../../components/form/form-input-error/form-input-error.component';
 
 @Component({
     selector: 'rr-login-view',
@@ -28,27 +30,31 @@ import { TranslocoModule } from '@ngneat/transloco';
         InputTextComponent,
         AuthLayoutComponent,
         TranslocoModule,
+        FormInputErrorComponent,
     ],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginViewComponent {
-    form: FormGroup;
+    formGroup: FormGroup;
     constructor(
         private authService: AuthService,
         private router: Router,
         private readonly formBuilder: FormBuilder,
     ) {
-        this.form = this.formBuilder.group({
+        this.formGroup = this.formBuilder.group({
             email: [null, [Validators.required, Validators.email]],
             password: [null, [Validators.required]],
         });
     }
 
     onLogin(): void {
-        if (this.form.valid) {
-            this.authService.login();
+        if (this.formGroup.valid) {
+            this.authService.login(
+                this.formGroup.value.email,
+                this.formGroup.value.password,
+            );
             this.router.navigateByUrl('/app');
         }
-        this.form.markAllAsTouched();
+        this.formGroup.markAllAsTouched();
     }
 }

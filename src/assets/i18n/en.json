@@ -8,6 +8,7 @@
   },
   "errors": {
     "required": "This field is required",
-    "email": "Not valid e-mail address"
+    "email": "Not valid e-mail address",
+    "passwordsDoNotMatch": "Password do not match"
   }
 }

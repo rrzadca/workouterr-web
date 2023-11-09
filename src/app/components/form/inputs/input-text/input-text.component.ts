@@ -1,5 +1,5 @@
 import { Component, Input, Self } from '@angular/core';
-import { BaseValueAccessor } from '../base-value-accessor';
+import { BaseValueAccessor } from '../../base-value-accessor';
 import { CommonModule } from '@angular/common';
 import { NgControl } from '@angular/forms';
 import { TranslocoModule } from '@ngneat/transloco';
