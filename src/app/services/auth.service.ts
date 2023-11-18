@@ -41,4 +41,8 @@ export class AuthService {
     getAuthToken(): string | null {
         return this.localStorageService.getItem('auth-token');
     }
+
+    markAsLoggedIn(): void {
+        this.loggedInSubject.next(true);
+    }
 }

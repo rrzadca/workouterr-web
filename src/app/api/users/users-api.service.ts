@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { User } from './user.model';
 import { CreateUser } from './create-user.model';
 import { environment } from '../../../environments/environment';
@@ -17,7 +17,12 @@ export class UsersApiService {
         });
     }
 
-    findAll(): Observable<User> {
-        return this.httpClient.get<User>(this.epUrl);
+    findAll(): Observable<User[]> {
+        return this.httpClient.get<User[]>(this.epUrl);
+    }
+
+    getCurrentUser(): Observable<User | null> {
+        console.log(` ;; this.httpClient`, this.httpClient);
+        return this.httpClient.get<User>(`${this.epUrl}/current`);
     }
 }
