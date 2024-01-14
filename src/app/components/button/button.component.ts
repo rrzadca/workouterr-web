@@ -40,7 +40,7 @@ export class ButtonComponent implements OnInit, OnChanges {
 
     addCssClasses(): void {
         this.cssClassesArr.push(
-            'shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-200',
+            'shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-200',
         );
         if (this.fullWidth) {
             this.cssClassesArr.push('w-full');
@@ -75,12 +75,12 @@ export class ButtonComponent implements OnInit, OnChanges {
         switch (this.variant) {
             case 'primary':
                 this.cssClassesArr.push(
-                    'text-white bg-teal-600 hover:bg-teal-700 focus-visible:outline-teal-600 dark:text-black dark:bg-teal-200 dark:hover:bg-teal-400 dark:focus-visible:outline-teal-200',
+                    'text-white bg-primary-700 hover:bg-primary-600 focus-visible:outline-primary-700 dark:text-black dark:bg-primary-700 dark:hover:bg-primary-600 dark:focus-visible:outline-primary-700',
                 );
                 break;
             case 'secondary':
                 this.cssClassesArr.push(
-                    'bg-neutral-800 dark:bg-neutral-200 text-neutral-200 dark:text-neutral-800 hover:bg-neutral-600 dark:hover:bg-neutral-400 focus-visible:outline-neutral-800 dark:focus-visible:outline-neutral-200',
+                    'bg-secondary-800 dark:bg-secondary-200 text-secondary-200 dark:text-secondary-800 hover:bg-secondary-600 dark:hover:bg-secondary-400 focus-visible:outline-secondary-800 dark:focus-visible:outline-secondary-200',
                 );
                 break;
             default:

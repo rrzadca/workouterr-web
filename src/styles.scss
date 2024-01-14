@@ -9,19 +9,19 @@ html {
     @apply h-full;
 }
 body {
-    @apply flex min-h-full flex-col bg-neutral-200 text-neutral-800 dark:bg-neutral-600 dark:text-neutral-200;
+    @apply flex min-h-full flex-col bg-tertiary-200 text-neutral-800 dark:bg-tertiary-700 dark:text-neutral-200;
 
     font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
 
 h1 {
-    @apply text-3xl font-bold text-teal-600 dark:text-teal-200;
+    @apply text-3xl font-bold text-primary-700 dark:text-primary-700;
 }
 
 h3 {
-    @apply text-xl font-bold text-teal-600 dark:text-teal-200;
+    @apply text-xl font-bold text-primary-700 dark:text-primary-700;
 }
 
 a {
-    @apply text-teal-600 hover:text-teal-800 dark:text-teal-200 hover:dark:text-teal-400;
+    @apply text-primary-700 hover:text-primary-800 dark:text-primary-700 hover:dark:text-primary-500;
 }
