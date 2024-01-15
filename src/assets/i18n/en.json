@@ -1,20 +1,22 @@
 {
   "common": {
-    "create-account": "Create account",
-    "login": "Login",
     "email": "E-mail",
     "password": "Password",
-    "back": "Back",
-    "or": "or"
+    "back": "Back"
   },
   "errors": {
     "required": "This field is required",
     "email": "Not valid e-mail address",
     "passwordsDoNotMatch": "Password do not match"
   },
+  "create-account": {
+    "title": "Sign up",
+    "confirm-password": "Confirm password"
+  },
   "login": {
-    "login": "Login",
+    "title": "Login",
     "forgot-password": "Forgot password",
-    "create-account": "create account"
+    "create-account": "create account",
+    "or": "or"
   }
 }

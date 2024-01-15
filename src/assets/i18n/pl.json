@@ -1,20 +1,22 @@
 {
   "common": {
-    "create-account": "Stwórz konto",
-    "login": "Zaloguj się",
     "email": "E-mail",
     "password": "Hasło",
-    "back": "Wróć",
-    "or": "lub"
+    "back": "Wróć"
   },
   "errors": {
     "required": "To pole jest wymagane",
     "email": "Niepoprawny adres e-mail",
     "passwordsDoNotMatch": "Podane hasłą nie są takie same"
   },
+  "create-account": {
+    "title": "Zarejestruj się",
+    "confirm-password": "Powtórz hasło"
+  },
   "login": {
-    "login": "Zaloguj się",
+    "title": "Zaloguj się",
     "forgot-password": "Zapomniałem hasła",
-    "create-account": "stwórz konto"
+    "create-account": "zarejestruj się",
+    "or": "lub"
   }
 }

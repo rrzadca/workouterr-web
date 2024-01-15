@@ -1,8 +1,8 @@
 <rr-auth-layout>
     <ng-container *transloco="let t">
         <div class="flex flex-col items-start gap-x-4 lg:flex-row lg:items-end">
-            <h1>{{ t('login.login') }}</h1>
-            <span class="text-primary-700">{{ t('common.or') }}</span>
+            <h1>{{ t('login.title') }}</h1>
+            <span class="text-primary-700">{{ t('login.or') }}</span>
             <a [routerLink]="'/create-account'">
                 {{ t('login.create-account') }}
             </a>
@@ -24,9 +24,9 @@
                 <a [routerLink]="'/forgot-password'">
                     {{ t('login.forgot-password') }}
                 </a>
-                <div class="flex w-1/2 flex-col gap-y-2">
+                <div class="w-1/2">
                     <rr-button [fullWidth]="true" (click)="onLogin()">
-                        {{ t('common.login') }}
+                        {{ t('login.title') }}
                     </rr-button>
                 </div>
             </div>
