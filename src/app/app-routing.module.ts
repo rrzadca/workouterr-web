@@ -24,10 +24,8 @@ const routes: Routes = [
     },
     {
         path: 'app',
-        loadComponent: () =>
-            import('./views/app/app-view.component').then(
-                (m) => m.AppViewComponent,
-            ),
+        loadChildren: () =>
+            import('./views/app/app-view.routes').then((r) => r.routes),
         canLoad: [AuthGuard],
         canActivate: [AuthGuard],
     },

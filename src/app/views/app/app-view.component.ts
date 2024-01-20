@@ -1,5 +1,6 @@
 import {
     ChangeDetectionStrategy,
+    ChangeDetectorRef,
     Component,
     DestroyRef,
     inject,
@@ -11,7 +12,7 @@ import { ButtonComponent } from '../../components/button/button.component';
 import { UsersApiService } from '../../api/users/users-api.service';
 import { User } from '../../api/users/user.model';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { RouterOutlet } from '@angular/router';
+import { RouterModule, RouterOutlet } from '@angular/router';
 
 @Component({
     selector: 'rr-app-view',
@@ -19,12 +20,14 @@ import { RouterOutlet } from '@angular/router';
     styleUrls: ['app-view.component.scss'],
     standalone: true,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [CommonModule, ButtonComponent, RouterOutlet],
+    imports: [CommonModule, RouterModule, ButtonComponent, RouterOutlet],
 })
 export class AppViewComponent implements OnInit {
     private readonly destroyRef = inject(DestroyRef);
+    private readonly changeDetectorRef = inject(ChangeDetectorRef);
 
     users: User[] = [];
+    currentUser: User | undefined;
 
     constructor(
         private readonly authService: AuthService,
@@ -36,11 +39,13 @@ export class AppViewComponent implements OnInit {
             .findAll()
             .pipe(takeUntilDestroyed(this.destroyRef))
             .subscribe((response) => {
-                console.log(` ;; response`, response);
+                this.currentUser = response[0];
+                console.log(` ;; this.currentUser`, this.currentUser);
+                this.changeDetectorRef.detectChanges();
             });
     }
 
-    onLogout(): void {
+    logout(): void {
         this.authService.logout();
     }
 }

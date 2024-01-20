@@ -1,0 +1,37 @@
+import {
+    ChangeDetectionStrategy,
+    Component,
+    inject,
+    OnInit,
+} from '@angular/core';
+
+import { CommonModule } from '@angular/common';
+import { RouterOutlet } from '@angular/router';
+
+
+@Component({
+    selector: 'app-{{ kebabCase name }}-view',
+    templateUrl: './{{ kebabCase name }}-view.component.html',
+    styles: [
+        `
+            :host {
+                display: block;
+            }
+        `,
+    ],
+    standalone: true,
+    imports: [CommonModule, RouterOutlet],
+    changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class {{ pascalCase name }}ViewComponent
+implements OnInit
+{
+
+
+    constructor() {
+    }
+
+    ngOnInit(): void {
+    }
+
+}

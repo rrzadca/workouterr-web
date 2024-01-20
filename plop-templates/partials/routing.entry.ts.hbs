@@ -1,0 +1,7 @@
+      {
+        path: '{{kebabCase name}}',
+        loadChildren: () =>
+          import('./views/{{kebabCase name}}-view/{{kebabCase name}}-view.routes').then(
+            (r) => r.routes
+          ),
+      },

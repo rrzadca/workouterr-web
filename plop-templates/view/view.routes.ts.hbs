@@ -1,0 +1,12 @@
+import { Route } from '@angular/router';
+import { {{ pascalCase name }}ViewComponent } from './{{ lowerCase name }}-view.component';
+
+export const routes: Route[] = [
+    {
+        path: '',
+        component: {{ pascalCase name }}ViewComponent,
+        children: [
+            // plopAppend
+        ],
+    },
+];
