@@ -1,7 +1,7 @@
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthApiService } from '../api/auth/auth-api.service';
+import { AuthApiService } from '../api-old/auth/auth-api.service';
 import { LocalStorageService } from './local-storage.service';
 
 @Injectable({

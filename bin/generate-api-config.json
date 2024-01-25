@@ -1,0 +1,15 @@
+{
+  "ngVersion": "16",
+  "configurationPrefix": "Api",
+  "enumNameSuffix": "Enum",
+  "modelFileSuffix": "",
+  "modelSuffix": "",
+  "serviceFileSuffix": "-api.service",
+  "serviceSuffix": "ApiService",
+  "fileNaming": "kebab-case",
+  "providedIn": "root",
+  "snapshot": false,
+  "supportsES6": true,
+  "withInterfaces": true,
+  "skipDefaultInterface": true
+}

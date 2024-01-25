@@ -9,8 +9,8 @@ import {
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
 import { ButtonComponent } from '../../components/button/button.component';
-import { UsersApiService } from '../../api/users/users-api.service';
-import { User } from '../../api/users/user.model';
+import { UsersApiService } from '../../api-old/users/users-api.service';
+import { User } from '../../api-old/users/user.model';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { RouterModule, RouterOutlet } from '@angular/router';
 
