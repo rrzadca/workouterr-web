@@ -5,12 +5,14 @@ import {
     HttpInterceptor,
     HttpRequest,
 } from '@angular/common/http';
-import { Observable, of, tap } from 'rxjs';
+import { catchError, Observable, of, tap, throwError } from 'rxjs';
 import { inject, Injectable } from '@angular/core';
 import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Injectable({ providedIn: 'root' })
 export class HttpErrorInterceptor implements HttpInterceptor {
+    private readonly router = inject(Router);
     private readonly authService = inject(AuthService);
 
     intercept(
@@ -18,17 +20,55 @@ export class HttpErrorInterceptor implements HttpInterceptor {
         next: HttpHandler,
     ): Observable<HttpEvent<any>> {
         return next.handle(request).pipe(
-            tap({
-                error: (err) => {
-                    if (
-                        err instanceof HttpErrorResponse &&
-                        err.status === 401
-                    ) {
-                        this.authService.logout();
+            catchError((httpResponseWithError) => {
+                if (httpResponseWithError instanceof HttpErrorResponse) {
+                    switch (httpResponseWithError.status) {
+                        case 400:
+                            this.handleBadRequestError(httpResponseWithError);
+                            break;
+                        case 401:
+                            this.handleNotAuthenticatedError();
+                            break;
+                        case 403:
+                            this.handleUnauthorizeLoggedError(
+                                httpResponseWithError,
+                            );
+                            break;
+                        case 404:
+                            this.handleNotFoundError();
+                            break;
+                        case 500:
+                            this.handleServerError();
+                            break;
                     }
-                    return of(err);
-                },
+                }
+
+                return throwError(httpResponseWithError);
             }),
         );
+    }
+
+    private handleBadRequestError(httpError: HttpErrorResponse): void {
+        // TODO: show notification with error
+    }
+
+    private handleNotAuthenticatedError(): void {
+        if (this.router.url !== '/' && this.router.url !== '/auth/login') {
+            this.router.navigateByUrl('/auth/login');
+        }
+
+        // this.authService.markAsLoggedIn(false);
+    }
+
+    private handleUnauthorizeLoggedError(httpResponseWithError: any): void {
+        // TODO: redirect to not authorized page with back button
+    }
+
+    private handleNotFoundError(): void {
+        // TODO: redirect to 404 page with back button
+    }
+
+    private handleServerError(): void {
+        // TODO: show notification about unexpected error
     }
 }

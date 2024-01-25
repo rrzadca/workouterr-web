@@ -22,7 +22,6 @@ export class UsersApiService {
     }
 
     getCurrentUser(): Observable<User | null> {
-        console.log(` ;; this.httpClient`, this.httpClient);
         return this.httpClient.get<User>(`${this.epUrl}/current`);
     }
 }
