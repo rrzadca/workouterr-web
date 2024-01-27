@@ -9,13 +9,14 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { PlansGroup } from './plans-group';
 
 
-export interface User { 
+export interface Plan { 
     id: string;
     createdOn: string;
     updatedOn: string;
-    email: string;
-    isActive: boolean;
+    name: string;
+    plansGroup: PlansGroup;
 }
 

@@ -53,11 +53,13 @@ export class HttpErrorInterceptor implements HttpInterceptor {
     }
 
     private handleNotAuthenticatedError(): void {
-        if (this.router.url !== '/' && this.router.url !== '/auth/login') {
-            this.router.navigateByUrl('/auth/login');
+        console.log(` ;; this.router.url`, this.router.url);
+        if (this.router.url !== '/login') {
+            console.log(` ;; `);
+            this.router.navigateByUrl('/login');
         }
 
-        // this.authService.markAsLoggedIn(false);
+        this.authService.markAsAuthenticated(false);
     }
 
     private handleUnauthorizeLoggedError(httpResponseWithError: any): void {

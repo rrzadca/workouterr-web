@@ -1,18 +1,14 @@
 import {
     ChangeDetectionStrategy,
-    ChangeDetectorRef,
     Component,
-    DestroyRef,
     inject,
     OnInit,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
 import { ButtonComponent } from '../../components/button/button.component';
-import { UsersApiService } from '../../api-old/users/users-api.service';
-import { User } from '../../api-old/users/user.model';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { RouterModule, RouterOutlet } from '@angular/router';
+import { CurrentUserService } from '../../services/current-user.service';
 
 @Component({
     selector: 'rr-app-view',
@@ -23,27 +19,14 @@ import { RouterModule, RouterOutlet } from '@angular/router';
     imports: [CommonModule, RouterModule, ButtonComponent, RouterOutlet],
 })
 export class AppViewComponent implements OnInit {
-    private readonly destroyRef = inject(DestroyRef);
-    private readonly changeDetectorRef = inject(ChangeDetectorRef);
+    private readonly authService = inject(AuthService);
+    private readonly currentUserService = inject(CurrentUserService);
 
-    users: User[] = [];
-    currentUser: User | undefined;
+    protected currentUser$$ = this.currentUserService.currentUser$$;
 
-    constructor(
-        private readonly authService: AuthService,
-        private readonly usersService: UsersApiService,
-    ) {}
+    constructor() {}
 
-    ngOnInit(): void {
-        this.usersService
-            .findAll()
-            .pipe(takeUntilDestroyed(this.destroyRef))
-            .subscribe((response) => {
-                this.currentUser = response[0];
-                console.log(` ;; this.currentUser`, this.currentUser);
-                this.changeDetectorRef.detectChanges();
-            });
-    }
+    ngOnInit(): void {}
 
     logout(): void {
         this.authService.logout();

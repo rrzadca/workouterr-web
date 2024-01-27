@@ -11,11 +11,11 @@
  */
 
 
-export interface User { 
+export interface Exercise { 
     id: string;
     createdOn: string;
     updatedOn: string;
-    email: string;
-    isActive: boolean;
+    name: string;
+    description: string;
 }
 

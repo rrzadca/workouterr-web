@@ -11,11 +11,7 @@
  */
 
 
-export interface User { 
-    id: string;
-    createdOn: string;
-    updatedOn: string;
-    email: string;
-    isActive: boolean;
+export interface CreatePlansGroupDto { 
+    name: string;
 }
 

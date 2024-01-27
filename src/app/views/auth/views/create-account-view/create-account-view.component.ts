@@ -11,7 +11,6 @@ import {
     ReactiveFormsModule,
     Validators,
 } from '@angular/forms';
-import { UsersApiService } from '../../../../api-old/users/users-api.service';
 import { Router, RouterLink } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { CommonModule } from '@angular/common';
@@ -20,6 +19,7 @@ import { InputTextComponent } from '../../../../components/form/inputs/input-tex
 import { AuthLayoutComponent } from '../../components/auth-layout/auth-layout.component';
 import { TranslocoModule } from '@ngneat/transloco';
 import { confirmPasswordValidator } from '../../../../validators/confirm-password.validator';
+import { UsersApiAppService } from '../../../../api-app-services/users-api-app.service';
 
 @Component({
     selector: 'rr-create-account-view',
@@ -40,13 +40,14 @@ import { confirmPasswordValidator } from '../../../../validators/confirm-passwor
 })
 export class CreateAccountViewComponent {
     private readonly destroyRef = inject(DestroyRef);
+
+    private readonly formBuilder = inject(FormBuilder);
+    private readonly usersApiAppService = inject(UsersApiAppService);
+    private readonly router = inject(Router);
+
     form: FormGroup;
 
-    constructor(
-        private readonly formBuilder: FormBuilder,
-        private readonly usersService: UsersApiService,
-        private readonly router: Router,
-    ) {
+    constructor() {
         this.form = this.formBuilder.group(
             {
                 email: [null, [Validators.required, Validators.email]],
@@ -63,10 +64,10 @@ export class CreateAccountViewComponent {
 
     onSubmit(): void {
         if (this.form.valid) {
-            this.usersService
+            this.usersApiAppService
                 .create(this.form.value)
                 .pipe(takeUntilDestroyed(this.destroyRef))
-                .subscribe((res) => {
+                .subscribe((_) => {
                     this.router.navigateByUrl('/login');
                 });
         }

@@ -14,6 +14,7 @@ import { HttpHeaders }                                       from '@angular/comm
 import { Observable }                                        from 'rxjs';
 
 import { CreateUserDto } from '../model/models';
+import { UpdateUserDto } from '../model/models';
 import { User } from '../model/models';
 
 
@@ -46,12 +47,6 @@ export interface UsersApiServiceInterface {
     usersControllerFindOne(id: string, extraHttpRequestParams?: any): Observable<User>;
 
     /**
-     * Get current user
-     * 
-     */
-    usersControllerGetCurrentUser(extraHttpRequestParams?: any): Observable<User>;
-
-    /**
      * Delete user
      * 
      * @param id 
@@ -62,8 +57,8 @@ export interface UsersApiServiceInterface {
      * Update user
      * 
      * @param id 
-     * @param body 
+     * @param updateUserDto 
      */
-    usersControllerUpdate(id: string, body: object, extraHttpRequestParams?: any): Observable<User>;
+    usersControllerUpdate(id: string, updateUserDto: UpdateUserDto, extraHttpRequestParams?: any): Observable<User>;
 
 }

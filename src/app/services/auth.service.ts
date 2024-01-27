@@ -1,40 +1,49 @@
-import { BehaviorSubject, Observable } from 'rxjs';
-import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable, switchMap, tap } from 'rxjs';
+import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthApiService } from '../api-old/auth/auth-api.service';
 import { LocalStorageService } from './local-storage.service';
+import { AuthApiAppService } from '../api-app-services/auth-api-app.service';
+import { CurrentUserService } from './current-user.service';
 
 @Injectable({
     providedIn: 'root',
 })
 export class AuthService {
-    private loggedInSubject = new BehaviorSubject<boolean>(false);
+    private isAuthenticatedSubject = new BehaviorSubject<boolean>(false);
 
-    constructor(
-        private readonly router: Router,
-        private readonly authApiService: AuthApiService,
-        private readonly localStorageService: LocalStorageService,
-    ) {}
+    private readonly router = inject(Router);
+    private readonly authApiService = inject(AuthApiAppService);
+    private readonly currentUserService = inject(CurrentUserService);
+    private readonly localStorageService = inject(LocalStorageService);
 
-    get loggedIn$(): Observable<boolean> {
-        return this.loggedInSubject.asObservable();
-    }
+    constructor() {}
 
-    get isLoggedIn(): boolean {
-        return this.loggedInSubject.getValue();
+    get isAuthenticated$(): Observable<boolean> {
+        return this.isAuthenticatedSubject.asObservable();
     }
 
     login(username: string, password: string): void {
-        this.authApiService.login(username, password).subscribe((authToken) => {
-            this.localStorageService.setItem('auth-token', authToken.token);
-            this.loggedInSubject.next(true);
-            this.router.navigateByUrl('/app');
-        });
+        this.authApiService
+            .signIn(username, password)
+            .pipe(
+                tap((response) => {
+                    this.localStorageService.setItem(
+                        'auth-token',
+                        response.accessToken,
+                    );
+                }),
+                switchMap((_) => this.currentUserService.fetchCurrentUser()),
+            )
+            .subscribe((_) => {
+                this.isAuthenticatedSubject.next(true);
+                this.router.navigateByUrl('/app');
+            });
     }
 
     logout(): void {
         this.localStorageService.removeItem('auth-token');
-        this.loggedInSubject.next(false);
+        this.currentUserService.currentUser$$.set(null);
+        this.isAuthenticatedSubject.next(false);
         this.router.navigateByUrl('/login');
     }
 
@@ -42,7 +51,7 @@ export class AuthService {
         return this.localStorageService.getItem('auth-token');
     }
 
-    markAsLoggedIn(): void {
-        this.loggedInSubject.next(true);
+    markAsAuthenticated(isAuthenticated: boolean): void {
+        this.isAuthenticatedSubject.next(isAuthenticated);
     }
 }

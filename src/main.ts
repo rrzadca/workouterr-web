@@ -17,6 +17,8 @@ import {
 import { TokenInterceptor } from './app/interceptors/token.interceptor';
 import { HttpErrorInterceptor } from './app/interceptors/http-error.interceptor';
 import { AppInitService } from './app/services/app-init.service';
+import { ApiModule } from './app/api';
+import { apiConfiguration } from './app/utils/api-configuration';
 
 if (environment.production) {
     enableProdMode();
@@ -33,6 +35,7 @@ bootstrapApplication(AppComponent, {
             AppRoutingModule,
             TranslocoRootModule,
             BrowserAnimationsModule,
+            ApiModule.forRoot(apiConfiguration),
         ),
         {
             provide: APP_INITIALIZER,
