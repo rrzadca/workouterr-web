@@ -1,0 +1,31 @@
+<div class="px-4 sm:px-6 lg:px-8">
+    <div class="-mx-4 mt-8 sm:-mx-0">
+        <table class="min-w-full divide-y divide-gray-300">
+            <thead>
+                <tr>
+                    @for (tableColumn of tableColumns; track $index) {
+                    <th
+                        scope="col"
+                        class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0"
+                    >
+                        {{ tableColumn.label }}
+                    </th>
+                    }
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200 bg-white">
+                @for(item of data; track $index) {
+                <tr>
+                    @for(column of tableColumns; track $index) {
+                    <td
+                        class="w-full max-w-0 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:w-auto sm:max-w-none sm:pl-0"
+                    >
+                        {{ item[column.fieldName] }}
+                    </td>
+                    }
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -3,6 +3,7 @@ import {
     Component,
     inject,
     OnInit,
+    signal,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
@@ -23,6 +24,8 @@ export class AppViewComponent implements OnInit {
     private readonly currentUserService = inject(CurrentUserService);
 
     protected currentUser$$ = this.currentUserService.currentUser$$;
+    protected showMobileSidebar$$ = signal<boolean>(false);
+    protected isSidebarVisible$$ = signal<boolean>(true);
 
     constructor() {}
 
@@ -30,5 +33,9 @@ export class AppViewComponent implements OnInit {
 
     logout(): void {
         this.authService.logout();
+    }
+
+    closeSidebar() {
+        this.isSidebarVisible$$.set(false);
     }
 }

@@ -1,0 +1,158 @@
+<div class="flex h-screen overflow-hidden">
+    <!-- mobile sidebar -->
+    <!-- Off-canvas menu for mobile, show/hide based on off-canvas menu state. -->
+    <div
+        class="fixed inset-0 z-40 flex md:hidden"
+        [class.hidden]="!isOverlayVisible$$()"
+        role="dialog"
+        aria-modal="true"
+    >
+        <!--
+          Off-canvas menu overlay, show/hide based on off-canvas menu state.
+
+          Entering: "transition-opacity ease-linear duration-300"
+            From: "opacity-0"
+            To: "opacity-100"
+          Leaving: "transition-opacity ease-linear duration-300"
+            From: "opacity-100"
+            To: "opacity-0"
+        -->
+        <div
+            *ngIf="isOverlayVisible$$()"
+            class="fixed inset-0 bg-gray-600 bg-opacity-75 opacity-0"
+            aria-hidden="true"
+            [nsTransition]="isSidebarOpened$$()"
+            nsTransitionEntering="transition-opacity ease-linear duration-300"
+            nsTransitionEnteringFrom="opacity-0"
+            nsTransitionEnteringTo="opacity-100"
+            nsTransitionLeaving="transition-opacity ease-linear duration-300"
+            nsTransitionLeavingFrom="opacity-100"
+            nsTransitionLeavingTo="opacity-0"
+            (onTransitionLeavingEnd)="hideOverlay()"
+        ></div>
+
+        <!--
+          Off-canvas menu, show/hide based on off-canvas menu state.
+
+          Entering: "transition ease-in-out duration-300 transform"
+            From: "-translate-x-full"
+            To: "translate-x-0"
+          Leaving: "transition ease-in-out duration-300 transform"
+            From: "translate-x-0"
+            To: "-translate-x-full"
+        -->
+        <div
+            class="relative flex w-full max-w-xs flex-1 -translate-x-full flex-col bg-white"
+            [nsTransition]="isSidebarOpened()"
+            nsTransitionEntering="transition ease-in-out duration-300 transform"
+            nsTransitionEnteringFrom="-translate-x-full"
+            nsTransitionEnteringTo="translate-x-0"
+            nsTransitionLeaving="transition ease-in-out duration-300 transform"
+            nsTransitionLeavingFrom="translate-x-0"
+            nsTransitionLeavingTo="-translate-x-full"
+        >
+            <!--
+              Close button, show/hide based on off-canvas menu state.
+
+              Entering: "ease-in-out duration-300"
+                From: "opacity-0"
+                To: "opacity-100"
+              Leaving: "ease-in-out duration-300"
+                From: "opacity-100"
+                To: "opacity-0"
+            -->
+
+            <div
+                class="absolute right-0 top-0 -mr-12 pt-2 opacity-0"
+                [nsTransition]="isSidebarOpened()"
+                nsTransitionEntering="ease-in-out duration-300"
+                nsTransitionEnteringFrom="opacity-0"
+                nsTransitionEnteringTo="opacity-100"
+                nsTransitionLeaving="ease-in-out duration-300"
+                nsTransitionLeavingFrom="opacity-100"
+                nsTransitionLeavingTo="opacity-0"
+            >
+                <button
+                    class="ml-1 flex h-10 w-10 items-center justify-center rounded-full text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+                    (click)="toggleSidebar()"
+                >
+                    <span class="sr-only">Close sidebar</span>
+                    <ns-icon [name]="'hiXOutline'" [size]="'xl'"></ns-icon>
+                </button>
+            </div>
+
+            <div class="h-0 flex-1 overflow-y-auto pb-4 pt-5">
+                <ng-container *ngTemplateOutlet="sidebarTemplate">
+                </ng-container>
+            </div>
+        </div>
+
+        <div class="w-14 shrink-0" aria-hidden="true">
+            <!-- Force sidebar to shrink to fit close icon -->
+        </div>
+    </div>
+
+    <!-- Static sidebar for desktop -->
+    <div
+        class="hidden bg-white transition-all duration-300 md:flex md:shrink-0"
+        [ngClass]="{
+            'translate-x-[-100%]': !isSidebarOpened() && state.isMd
+        }"
+    >
+        <div class="flex w-64 flex-col">
+            <ng-container *ngTemplateOutlet="sidebarTemplate"> </ng-container>
+        </div>
+    </div>
+
+    <!-- main container -> on the right of the sidebar -->
+    <div
+        class="flex w-0 flex-1 flex-col overflow-hidden transition-all duration-300"
+        [ngClass]="{
+            '-ml-64': !isSidebarOpened() && state.isMd
+        }"
+    >
+        <div class="relative z-10 flex min-h-[4rem] shrink-0 bg-white shadow">
+            <!-- toggle button for mobile sidebar -->
+            <button
+                class="h-full border-r border-gray-200 px-4 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 md:hidden"
+                (click)="toggleSidebar()"
+            >
+                <span class="sr-only">Open sidebar</span>
+                <ns-icon [name]="'heroiconMenuOutline'" [size]="'xl'"></ns-icon>
+            </button>
+
+            <!-- toggle button for desktop sidebar -->
+            <button
+                *ngIf="isDesktopSidebarClosable"
+                class="hidden h-full border-r border-gray-200 px-4 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 md:block"
+                (click)="toggleSidebar()"
+            >
+                <span class="sr-only">Open sidebar</span>
+                <ns-icon
+                    [name]="
+                        isSidebarOpened()
+                            ? 'hiChevronLeftOutline'
+                            : 'heroiconMenuOutline'
+                    "
+                    [size]="isSidebarOpened() ? 'default' : 'xl'"
+                ></ns-icon>
+            </button>
+
+            <!-- topbar content -->
+            <div class="flex-1">
+                <ng-container *ngTemplateOutlet="topbarTemplate">
+                </ng-container>
+            </div>
+        </div>
+
+        <!-- main content -->
+        <main class="relative z-0 flex-1 overflow-y-auto focus:outline-none">
+            <div class="mx-auto px-4 py-8 sm:px-6 md:px-8">
+                <ng-content></ng-content>
+            </div>
+            <div class="sticky bottom-0">
+                <ng-container *ngTemplateOutlet="footerTemplate"></ng-container>
+            </div>
+        </main>
+    </div>
+</div>

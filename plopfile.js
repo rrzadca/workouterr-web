@@ -63,7 +63,9 @@ module.exports = function (plop) {
         description: '',
         prompts: [PROMPTS.name, PROMPTS.routingModule],
         actions: (data) => {
-            const viewData = getViewData(data, 'view');
+            const viewData = getViewData(data);
+
+            const baseTemplatesDir = `${TEMPLATES_DIR}/view/`;
 
             const actions = [];
             actions.push(
@@ -77,19 +79,19 @@ module.exports = function (plop) {
                 // routes
                 {
                     type: 'add',
-                    templateFile: `${viewData.baseTemplatesDir}view.routes.ts.hbs`,
+                    templateFile: `${baseTemplatesDir}view.routes.ts.hbs`,
                     path: `${viewData.baseDirWithNamePrefix}.routes.ts`,
                 },
                 // view container
                 {
                     type: 'add',
-                    templateFile: `${viewData.baseTemplatesDir}/view.component.ts.hbs`,
-                    path: `${viewData.baseDirWithNamePrefix}.component.ts`,
+                    templateFile: `${baseTemplatesDir}/view.component.ts.hbs`,
+                    path: `${viewData.baseDirForComponents}/{{kebabCase name}}.component.ts`,
                 },
                 {
                     type: 'add',
-                    templateFile: `${viewData.baseTemplatesDir}/view.component.html.hbs`,
-                    path: `${viewData.baseDirWithNamePrefix}.component.html`,
+                    templateFile: `${baseTemplatesDir}/view.component.html.hbs`,
+                    path: `${viewData.baseDirForComponents}/{{kebabCase name}}.component.html`,
                 },
             );
 
@@ -132,17 +134,13 @@ function getViewData(data, templateDir) {
 
     const routingModuleToInsertRoute = `${APP_PATH}/${parentRoutingModule}`;
 
-    const baseTemplatesDir = `${TEMPLATES_DIR}/${templateDir}/`;
     const baseDirWithNamePrefix = `${targetViewDirectory}/{{kebabCase name}}-view/{{kebabCase name}}-view`;
-    const baseDirForComponents = `${targetViewDirectory}/{{kebabCase name}}-view/components/`;
-    const baseDirForViews = `${targetViewDirectory}/{{kebabCase name}}-view/views/`;
+    const baseDirForComponents = `${targetViewDirectory}/{{kebabCase name}}-view/components`;
 
     return {
         targetViewDirectory,
         routingModuleToInsertRoute,
-        baseTemplatesDir,
         baseDirWithNamePrefix,
         baseDirForComponents,
-        baseDirForViews,
     };
 }

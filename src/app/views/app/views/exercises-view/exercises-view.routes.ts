@@ -1,5 +1,5 @@
 import { Route } from '@angular/router';
-import { ExercisesViewComponent } from './exercises-view.component';
+import { ExercisesViewComponent } from './components/exercises-view/exercises-view.component';
 
 export const routes: Route[] = [
     {
