@@ -2,8 +2,10 @@ import {
     Directive,
     effect,
     ElementRef,
+    EventEmitter,
     Input,
     OnInit,
+    Output,
     signal,
 } from '@angular/core';
 
@@ -26,6 +28,9 @@ export class TransitionDirective implements OnInit {
 
         this.isVisible$$.set(value);
     }
+
+    @Output() onTransitionEnteringEnd = new EventEmitter<void>();
+    @Output() onTransitionLeavingEnd = new EventEmitter<void>();
 
     private isVisible$$ = signal<boolean>(false);
 
