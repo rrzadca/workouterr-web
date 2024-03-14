@@ -1,29 +1,35 @@
-import { BehaviorSubject, Observable, switchMap, tap } from 'rxjs';
+import { switchMap, tap } from 'rxjs';
 import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { LocalStorageService } from './local-storage.service';
 import { AuthApiAppService } from '../api-app-services/auth-api-app.service';
-import { CurrentUserService } from './current-user.service';
+import { User } from '../api';
+import { StatefulClass } from '@utils/stateful-class';
+
+interface AuthServiceState {
+    currentUser: User | null;
+}
 
 @Injectable({
     providedIn: 'root',
 })
-export class AuthService {
-    private isAuthenticatedSubject = new BehaviorSubject<boolean>(false);
-
+export class AuthService extends StatefulClass<AuthServiceState> {
     private readonly router = inject(Router);
-    private readonly authApiService = inject(AuthApiAppService);
-    private readonly currentUserService = inject(CurrentUserService);
+    private readonly authApiAppService = inject(AuthApiAppService);
     private readonly localStorageService = inject(LocalStorageService);
 
-    constructor() {}
+    constructor() {
+        super();
 
-    get isAuthenticated$(): Observable<boolean> {
-        return this.isAuthenticatedSubject.asObservable();
+        this.createState({ currentUser: null });
+    }
+
+    get isAuthenticated(): boolean {
+        return !!this.state.currentUser;
     }
 
     login(username: string, password: string): void {
-        this.authApiService
+        this.authApiAppService
             .signIn(username, password)
             .pipe(
                 tap((response) => {
@@ -32,18 +38,17 @@ export class AuthService {
                         response.accessToken,
                     );
                 }),
-                switchMap((_) => this.currentUserService.fetchCurrentUser()),
+                switchMap((_) => this.authApiAppService.fetchCurrentUser()),
             )
-            .subscribe((_) => {
-                this.isAuthenticatedSubject.next(true);
+            .subscribe((user) => {
+                this.setState({ currentUser: user });
                 this.router.navigateByUrl('/app');
             });
     }
 
     logout(): void {
         this.localStorageService.removeItem('auth-token');
-        this.currentUserService.currentUser$$.set(null);
-        this.isAuthenticatedSubject.next(false);
+        this.setState({ currentUser: null });
         this.router.navigateByUrl('/login');
     }
 
@@ -51,7 +56,7 @@ export class AuthService {
         return this.localStorageService.getItem('auth-token');
     }
 
-    markAsAuthenticated(isAuthenticated: boolean): void {
-        this.isAuthenticatedSubject.next(isAuthenticated);
+    setCurrentUser(user: User | null): void {
+        this.setState({ currentUser: user });
     }
 }

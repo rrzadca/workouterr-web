@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AuthenticateApiService, SignInResponseDto } from '../api';
+import { AuthenticateApiService, SignInResponseDto, User } from '../api';
 
 @Injectable({ providedIn: 'root' })
 export class AuthApiAppService {
@@ -11,5 +11,9 @@ export class AuthApiAppService {
             username,
             password,
         });
+    }
+
+    fetchCurrentUser(): Observable<User> {
+        return this.authApiService.authenticateControllerCurrentUser();
     }
 }

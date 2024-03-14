@@ -59,7 +59,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
             this.router.navigateByUrl('/login');
         }
 
-        this.authService.markAsAuthenticated(false);
+        this.authService.setCurrentUser(null);
     }
 
     private handleUnauthorizeLoggedError(httpResponseWithError: any): void {

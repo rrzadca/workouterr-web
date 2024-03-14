@@ -9,7 +9,6 @@ import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
 import { ButtonComponent } from '../../components/button/button.component';
 import { RouterModule, RouterOutlet } from '@angular/router';
-import { CurrentUserService } from '../../services/current-user.service';
 
 @Component({
     selector: 'rr-app-view',
@@ -21,9 +20,8 @@ import { CurrentUserService } from '../../services/current-user.service';
 })
 export class AppViewComponent implements OnInit {
     private readonly authService = inject(AuthService);
-    private readonly currentUserService = inject(CurrentUserService);
 
-    protected currentUser$$ = this.currentUserService.currentUser$$;
+    protected currentUser$$ = signal(this.authService.state.currentUser);
     protected showMobileSidebar$$ = signal<boolean>(false);
     protected isSidebarVisible$$ = signal<boolean>(true);
 

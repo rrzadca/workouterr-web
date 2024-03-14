@@ -14,15 +14,13 @@ export class AuthGuard {
         | boolean
         | UrlTree
         | Observable<boolean | UrlTree>
-        | Promise<boolean | UrlTree> =>
-        this.authService.isAuthenticated$.pipe(
-            take(1),
-            tap((isAuthenticated) => {
-                if (!isAuthenticated) {
-                    this.router.navigateByUrl('/login');
-                }
-            }),
-        );
+        | Promise<boolean | UrlTree> => {
+        if (!this.authService.isAuthenticated) {
+            this.router.navigateByUrl('/login');
+            return false;
+        }
+        return true;
+    };
 
     canActivate: CanActivateFn = this.isAuthenticated;
     canMatch: CanMatchFn = this.isAuthenticated;
