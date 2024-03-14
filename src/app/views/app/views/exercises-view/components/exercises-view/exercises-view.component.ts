@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    inject,
+    OnInit,
+} from '@angular/core';
 
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
@@ -8,7 +13,7 @@ import {
 } from '../../../../../../components/table/table.component';
 import { Exercise } from '../../../../../../api';
 import { ButtonComponent } from '../../../../../../components/button/button.component';
-import { TestDialogComponent } from '../../../../../../components/test-dialog/test-dialog.component';
+import { BreakpointService } from '../../../../../../services/breakpoint.service';
 
 @Component({
     selector: 'app-exercises-view',
@@ -21,13 +26,7 @@ import { TestDialogComponent } from '../../../../../../components/test-dialog/te
         `,
     ],
     standalone: true,
-    imports: [
-        CommonModule,
-        RouterOutlet,
-        TableComponent,
-        ButtonComponent,
-        TestDialogComponent,
-    ],
+    imports: [CommonModule, RouterOutlet, TableComponent, ButtonComponent],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ExercisesViewComponent implements OnInit {
