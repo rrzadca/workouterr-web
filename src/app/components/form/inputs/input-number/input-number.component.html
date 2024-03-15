@@ -1,0 +1,67 @@
+<div
+    class="ns-form-input-number relative flex w-full items-center rounded-md border shadow-sm focus-within:border focus-within:border-secondary-700 sm:text-sm"
+    [ngClass]="{
+        'border-gray-300': !isInvalid,
+        'border-error-300': isInvalid,
+        'opacity-50': isDisabled,
+        'bg-gray-100': readonly
+    }"
+>
+    <div *ngIf="prefix" class="ns-form-input-number__prefix pl-2 text-gray-500">
+        {{ prefix }}
+    </div>
+    <input
+        [type]="'text'"
+        class="ns-form-input-number__input block w-full rounded-md border-none pr-10 focus:shadow-none focus:outline-none focus:ring-0 sm:text-sm"
+        [ngClass]="{
+            'text-error-700 placeholder:text-error-300': isInvalid,
+            'text-gray-700 placeholder:text-gray-500': !isInvalid,
+            'bg-gray-100': readonly
+        }"
+        [rrNumbersOnly]="enteredValue"
+        [placeholder]="placeholder ? placeholder : ''"
+        [value]="displayValue"
+        [attr.id]="fieldId ? fieldId : null"
+        [attr.disabled]="isDisabled || readonly ? 'disabled' : null"
+        [attr.readonly]="readonly ? 'readonly' : null"
+        #input
+        (input)="onValueChange(input.value)"
+        (blur)="emitTouchEvent()"
+        [attr.aria-invalid]="isInvalid"
+        [attr.aria-describedby]="
+            isInvalid ? fieldId + '-error' : fieldId + '-description'
+        "
+        inputmode="decimal"
+    />
+    <div
+        *ngIf="postfix"
+        class="ns-form-input-number__posfix pr-2 text-gray-500"
+        [ngClass]="{
+            'pr-10': isInvalid
+        }"
+    >
+        {{ postfix }}
+    </div>
+
+    <div
+        *ngIf="isInvalid"
+        class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3"
+    >
+        <ns-icon
+            [name]="'heroiconExclamationCircleSolid'"
+            [size]="'l'"
+            class="text-error-700"
+        ></ns-icon>
+    </div>
+</div>
+
+<ng-container *ngIf="isInvalid && errorMessages">
+    <ng-container *transloco="let t">
+        <p
+            *ngFor="let error of errorMessages"
+            class="mt-2 text-left text-sm text-red-600"
+        >
+            {{ t(error) }}
+        </p>
+    </ng-container>
+</ng-container>

@@ -24,6 +24,7 @@
       "@app/*": ["src/app/*"],
       "@api/*": ["src/app/api/*"],
       "@components/*": ["src/app/components/*"],
+      "@core/*": ["src/app/core/*"],
       "@dialogs/*": ["src/app/dialogs/*"],
       "@env/*": ["src/environments/*"],
       "@services/*": ["src/app/services/*"],

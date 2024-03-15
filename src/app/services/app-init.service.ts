@@ -10,9 +10,14 @@ export class AppInitService {
     private readonly authService = inject(AuthService);
 
     init(): void {
-        this.authApiAppService.fetchCurrentUser().subscribe((user) => {
-            this.authService.setCurrentUser(user);
-            this.router.initialNavigation();
+        this.authApiAppService.fetchCurrentUser().subscribe({
+            next: (user) => {
+                this.authService.setCurrentUser(user);
+                this.router.initialNavigation();
+            },
+            error: () => {
+                this.router.initialNavigation();
+            },
         });
     }
 }

@@ -53,9 +53,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
     }
 
     private handleNotAuthenticatedError(): void {
-        console.log(` ;; this.router.url`, this.router.url);
-        if (this.router.url !== '/login') {
-            console.log(` ;; `);
+        if (this.router.url.startsWith('/login')) {
             this.router.navigateByUrl('/login');
         }
 

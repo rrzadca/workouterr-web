@@ -1,5 +1,12 @@
 import { DestroyRef, inject } from '@angular/core';
-import { BehaviorSubject, filter, Observable } from 'rxjs';
+import {
+    BehaviorSubject,
+    distinctUntilChanged,
+    filter,
+    map,
+    Observable,
+} from 'rxjs';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 export abstract class StatefulClass<State> {
     protected readonly destroyRef = inject(DestroyRef);
@@ -36,5 +43,27 @@ export abstract class StatefulClass<State> {
             // @ts-ignore
             this.stateSubject$.next(nextState);
         }
+    }
+
+    protected observeStateChange<Key extends keyof State>(
+        stateProperty: Key,
+    ): Observable<State[Key]> {
+        return this.state$.pipe(
+            filter((state): state is State => !!state),
+            map((state) => state[stateProperty]),
+            distinctUntilChanged(),
+            takeUntilDestroyed(this.destroyRef),
+        );
+    }
+
+    protected mapObservableToState<Key extends keyof State>(
+        stateProperty: Key,
+        stream$: Observable<State[Key]>,
+    ): void {
+        stream$.pipe(takeUntilDestroyed(this.destroyRef)).subscribe((value) => {
+            const stateToUpdate: Partial<State> = {};
+            stateToUpdate[stateProperty] = value;
+            this.setState(stateToUpdate);
+        });
     }
 }

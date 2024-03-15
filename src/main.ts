@@ -3,22 +3,22 @@ import {
     enableProdMode,
     importProvidersFrom,
 } from '@angular/core';
-import { environment } from './environments/environment';
 import { bootstrapApplication, BrowserModule } from '@angular/platform-browser';
-import { AppComponent } from './app/app.component';
-import { AppRoutingModule } from './app/app-routing.module';
-import { TranslocoRootModule } from './app/transloco-root.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
     HTTP_INTERCEPTORS,
     provideHttpClient,
     withInterceptorsFromDi,
 } from '@angular/common/http';
-import { TokenInterceptor } from './app/interceptors/token.interceptor';
-import { HttpErrorInterceptor } from './app/interceptors/http-error.interceptor';
-import { AppInitService } from './app/services/app-init.service';
-import { ApiModule } from './app/api';
-import { apiConfiguration } from './app/utils/api-configuration';
+import { apiConfiguration } from '@core/api-configuration';
+import { environment } from '@env/environment';
+import { AppInitService } from '@services/app-init.service';
+import { AppComponent } from '@app/app.component';
+import { AppRoutingModule } from '@app/app-routing.module';
+import { TranslocoRootModule } from '@app/transloco-root.module';
+import { ApiModule } from '@app/api';
+import { TokenInterceptor } from '@app/interceptors/token.interceptor';
+import { HttpErrorInterceptor } from '@app/interceptors/http-error.interceptor';
 
 if (environment.production) {
     enableProdMode();

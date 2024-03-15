@@ -1,13 +1,19 @@
 import { Component, Input, Self } from '@angular/core';
-import { BaseValueAccessor } from '../../base-value-accessor';
 import { CommonModule } from '@angular/common';
 import { NgControl } from '@angular/forms';
 import { TranslocoModule } from '@ngneat/transloco';
+import { BaseValueAccessor } from '@core/base-value-accessor';
 
 @Component({
     selector: 'rr-input-text',
     templateUrl: './input-text.component.html',
-    styleUrls: ['./input-text.component.scss'],
+    styles: [
+        `
+            :host {
+                display: block;
+            }
+        `,
+    ],
     standalone: true,
     imports: [CommonModule, TranslocoModule],
 })

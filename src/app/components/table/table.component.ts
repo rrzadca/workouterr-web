@@ -12,7 +12,7 @@ export interface TableColumn {
 }
 
 @Component({
-    selector: 'app-table',
+    selector: 'rr-table',
     templateUrl: './table.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,

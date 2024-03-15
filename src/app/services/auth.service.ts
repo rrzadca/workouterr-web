@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { LocalStorageService } from './local-storage.service';
 import { AuthApiAppService } from '../api-app-services/auth-api-app.service';
 import { User } from '../api';
-import { StatefulClass } from '@utils/stateful-class';
+import { StatefulClass } from '@core/stateful-class';
 
 interface AuthServiceState {
     currentUser: User | null;

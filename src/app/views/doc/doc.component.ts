@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ButtonComponent } from '../../components/button/button.component';
-import { InputTextComponent } from '../../components/form/inputs/input-text/input-text.component';
 import { FormsModule } from '@angular/forms';
-
+import { ButtonComponent } from '@components/button/button.component';
+import { InputTextComponent } from '@components/form/inputs/input-text/input-text.component';
 @Component({
     selector: 'app-doc',
     standalone: true,
