@@ -1,0 +1,10 @@
+<ng-container *ngIf="name && getAppIcon(name)">
+    <span
+        class="svg-icon__icon inline-block"
+        [innerHTML]="getAppIcon(name) | rrSafeHtml"
+        [ngClass]="cssClasses$$()"
+        [ngStyle]="{
+            height: customHeight ? customHeight : null
+        }"
+    ></span>
+</ng-container>

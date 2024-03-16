@@ -9,7 +9,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "g:api": "./bin/generate-api.sh",
-    "g:icons": "svg-to-ts --config ./.svg-to-tsrc-lib.json",
+    "g:icons": "svg-to-ts-object --config ./.svg-to-tsrc-lib.json",
     "u:tailwind": "npm install tailwindcss@latest postcss@latest autoprefixer@latest @tailwindcss/typography@latest @tailwindcss/forms@latest @tailwindcss/aspect-ratio@latest @tailwindcss/line-clamp@latest @tailwindcss/container-queries --save-exact",
     "prettier:all": "prettier --write ./src/**/*.{html,ts,scss}"
   },
@@ -53,7 +53,7 @@
     "postcss": "8.4.33",
     "prettier": "^3.0.3",
     "prettier-plugin-tailwindcss": "^0.5.6",
-    "svg-to-ts": "6.0.1",
+    "svg-to-ts": "10.1.0",
     "tailwindcss": "3.4.1",
     "typescript": "5.2.2"
   }

@@ -1,0 +1,13 @@
+:host {
+    @apply flex w-fit items-center justify-center;
+
+    .svg-icon__icon {
+        ::ng-deep svg {
+            @apply h-full w-auto;
+        }
+
+        ::ng-deep path {
+            fill: currentColor !important;
+        }
+    }
+}

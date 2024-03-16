@@ -1,11 +1,11 @@
 {
-  "conversionType": "object",
   "srcFiles": ["./src/assets/icons/**/*.svg"],
-  "objectName": "WorkouterrIcons",
-  "fileName": "lib-icons",
+  "conversionType": "object",
+  "objectName": "AppIcons",
+  "fileName": "app-icons-lib",
   "outputDirectory": "./src/app/components/icon/icons",
-  "interfaceName": "WorkouterrIcon",
-  "typeName": "WorkouterrIconName",
+  "interfaceName": "AppIcon",
+  "typeName": "AppIconName",
   "prefix": "icon",
   "generateType": true,
   "generateTypeObject": true,
@@ -16,12 +16,7 @@
   "delimiter": "CAMEL",
   "barrelFileName": "generated-icons",
   "svgoConfig": {
-    "plugins": [
-      {
-        "removeDimensions": true,
-        "cleanupAttrs": true
-      }
-    ]
+    "plugins": ["cleanupAttrs", "removeDimensions"]
   },
   "verbose": true,
   "compileSources": false

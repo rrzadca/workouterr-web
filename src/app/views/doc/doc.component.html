@@ -3,7 +3,9 @@
     <div class="flex items-center gap-x-4">
         <rr-button [variant]="'primary'" [size]="'sm'">primary sm</rr-button>
         <rr-button [variant]="'primary'" [size]="'md'">primary md</rr-button>
-        <rr-button [variant]="'primary'" [size]="'lg'">primary lg</rr-button>
+        <rr-button [variant]="'primary'" [size]="'default'"
+            >primary lg</rr-button
+        >
         <rr-button [variant]="'primary'" [size]="'xl'">primary xl</rr-button>
         <rr-button [variant]="'primary'" [size]="'2xl'">primary 2xl</rr-button>
     </div>
@@ -14,7 +16,7 @@
         <rr-button [variant]="'secondary'" [size]="'md'">
             secondary md
         </rr-button>
-        <rr-button [variant]="'secondary'" [size]="'lg'">
+        <rr-button [variant]="'secondary'" [size]="'default'">
             secondary lg
         </rr-button>
         <rr-button [variant]="'secondary'" [size]="'xl'">
@@ -34,3 +36,8 @@
 ></rr-input-text>
 
 <h3>icons</h3>
+<div class="flex space-x-2">
+    <rr-svg-icon [name]="'faUser'"></rr-svg-icon>
+    <rr-svg-icon [name]="'faHouse'"></rr-svg-icon>
+    <rr-svg-icon [name]="'faCheck'"></rr-svg-icon>
+</div>

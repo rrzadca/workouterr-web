@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-export type ButtonSize = 'sm' | 'md' | 'lg' | 'xl' | '2xl';
+export type ButtonSize = 'sm' | 'md' | 'default' | 'xl' | '2xl';
 export type ButtonVariant = 'primary' | 'secondary';
 
 @Component({
@@ -20,7 +20,7 @@ export type ButtonVariant = 'primary' | 'secondary';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ButtonComponent implements OnInit, OnChanges {
-    @Input() size: ButtonSize = 'lg';
+    @Input() size: ButtonSize = 'default';
     @Input() variant: ButtonVariant = 'primary';
     @Input() fullWidth = false;
 
@@ -57,7 +57,7 @@ export class ButtonComponent implements OnInit, OnChanges {
             case 'md':
                 this.cssClassesArr.push('rounded px-2 py-1 text-sm');
                 break;
-            case 'lg':
+            case 'default':
                 this.cssClassesArr.push('rounded-md px-2.5 py-1.5 text-sm');
                 break;
             case 'xl':
