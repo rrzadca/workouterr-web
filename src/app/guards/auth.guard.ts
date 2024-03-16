@@ -15,7 +15,6 @@ export class AuthGuard {
         | UrlTree
         | Observable<boolean | UrlTree>
         | Promise<boolean | UrlTree> => {
-        console.log(` ;; this.router.url`, this.router.url);
         if (!this.authService.isAuthenticated) {
             this.router.navigateByUrl('/login');
             return false;
