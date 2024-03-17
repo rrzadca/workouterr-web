@@ -48,9 +48,9 @@
     <br />
 
     <h3>icons</h3>
-    <div class="flex space-x-2">
-        <rr-svg-icon [name]="'faUser'"></rr-svg-icon>
-        <rr-svg-icon [name]="'faHouse'"></rr-svg-icon>
-        <rr-svg-icon [name]="'faCheck'"></rr-svg-icon>
+    <div class="flex flex-wrap gap-x-2 gap-y-2">
+        @for (iconName of iconNames; track $index) {
+            <rr-svg-icon [name]="iconName" [size]="'2xl'"></rr-svg-icon>
+        }
     </div>
 </div>
