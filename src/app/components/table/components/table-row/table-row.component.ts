@@ -21,7 +21,8 @@ import { TableColumn } from '@components/table/models/table-column.model';
     styles: [
         `
             :host {
-                display: block;
+                display: table-row-group;
+                box-sizing: border-box;
             }
         `,
     ],

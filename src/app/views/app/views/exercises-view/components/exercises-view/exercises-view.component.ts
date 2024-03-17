@@ -6,6 +6,7 @@ import { TableComponent } from '@components/table/components/table/table.compone
 import { ButtonComponent } from '@components/button/button.component';
 import { TableColumn } from '@components/table/models/table-column.model';
 import { Exercise } from '@app/api';
+import { TableRowOption } from '@components/table/models/table-row-option.model';
 
 @Component({
     selector: 'app-exercises-view',
@@ -30,6 +31,19 @@ export class ExercisesViewComponent implements OnInit {
         {
             label: 'Description',
             fieldName: 'description',
+        },
+    ];
+
+    protected tableRowOptions: TableRowOption[] = [
+        {
+            label: 'Edit',
+            action: (row: Exercise) => console.log('Edit', row),
+            icon: 'faPenSolid',
+        },
+        {
+            label: 'Delete',
+            action: (row: Exercise) => console.log('Delete', row),
+            icon: 'faTrashCanSolid',
         },
     ];
 
