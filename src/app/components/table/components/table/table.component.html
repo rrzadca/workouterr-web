@@ -1,0 +1,45 @@
+<div class="px-4 sm:px-6 lg:px-8">
+    <div class="-mx-4 mt-8 sm:-mx-0">
+        <table class="min-w-full divide-y divide-gray-300">
+            <thead>
+                <tr>
+                    @for (tableColumn of tableColumns; track $index) {
+                        <th
+                            scope="col"
+                            class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold sm:pl-0"
+                        >
+                            {{ tableColumn.label }}
+                        </th>
+                    }
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-tertiary-500">
+                @for (item of data; track $index) {
+                    <tr class="group relative hover:bg-tertiary-800">
+                        @for (column of tableColumns; track $index) {
+                            <td
+                                class="w-full max-w-0 py-4 pl-4 pr-3 text-sm font-medium sm:w-auto sm:max-w-none sm:pl-0"
+                            >
+                                {{ item[column.fieldName] }}
+                            </td>
+                        }
+                        <div
+                            class="absolute right-0 top-4 hidden gap-x-2 pl-4 pr-2 transition-all duration-300 ease-in-out group-hover:block"
+                        >
+                            <div class="flex flex-row gap-x-2">
+                                <rr-svg-icon
+                                    [name]="'faPenSolid'"
+                                    [clickable]="true"
+                                ></rr-svg-icon>
+                                <rr-svg-icon
+                                    [name]="'faTrashCanSolid'"
+                                    [clickable]="true"
+                                ></rr-svg-icon>
+                            </div>
+                        </div>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
